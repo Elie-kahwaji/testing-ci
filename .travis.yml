@@ -1,18 +1,26 @@
 # This enables the 'defaults' to test java applications:
 language: java
 
+
 # We can specify a list of JDKs to be used for testing
 # A list of available JDKs in Trusty can be seed in:
 # https://docs.travis-ci.com/user/reference/xenial/#jvm-clojure-groovy-java-scala-support
 jdk:
   - openjdk11
 
+#the current event type, known event types are: push, pull_request, api, cron
+stages:
+  - name: compile
+    if: type = pull_request OR type = push
+  - name: test
+    if: type = pull_request OR type = push
+
 before_install:
   - chmod +x mvnw
 
 jobs:
   include:
-    - stage: build
+    - stage: compile
       script: mvn compile
     - stage: test
       script: mvn test
