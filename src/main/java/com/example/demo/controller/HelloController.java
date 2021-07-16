@@ -13,7 +13,11 @@ public class HelloController {
   @GetMapping("/hello")
   public ResponseEntity<String> sayHello(@RequestParam("name") String name) {
 
-    if(name == null || name.trim().isEmpty()) {
+    if(name == null) {
+      return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+    }
+
+    if(name.trim().isEmpty()) {
       return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
     }
 
