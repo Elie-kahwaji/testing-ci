@@ -28,4 +28,13 @@ public class TestHomeController {
          .andDo(print())
          .andExpect(status().isOk());
   }
+
+  @Test
+  public void whenNoNameBadRequest() throws Exception {
+    mockMvc.perform(MockMvcRequestBuilders
+                        .get("/hello")
+                        .accept(MediaType.TEXT_PLAIN_VALUE))
+        .andDo(print())
+        .andExpect(status().isBadRequest());
+  }
 }
