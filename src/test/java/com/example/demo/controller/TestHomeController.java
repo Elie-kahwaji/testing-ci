@@ -41,9 +41,18 @@ public class TestHomeController {
   @Test
   public void whenEmptyNameBadRequest() throws Exception {
     mockMvc.perform(MockMvcRequestBuilders
-                        .get("/hello")
+                        .get("/hello").param("name", "")
                         .accept(MediaType.TEXT_PLAIN_VALUE))
         .andDo(print())
         .andExpect(status().isBadRequest());
+  }
+
+  @Test
+  public void fail() throws Exception {
+    mockMvc.perform(MockMvcRequestBuilders
+                        .get("/hello")
+                        .accept(MediaType.TEXT_PLAIN_VALUE))
+        .andDo(print())
+        .andExpect(status().isOk());
   }
 }
