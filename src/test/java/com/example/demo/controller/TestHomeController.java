@@ -30,29 +30,20 @@ public class TestHomeController {
   }
 
   @Test
-  public void whenNoNameInternalServerError() throws Exception {
+  public void whenNoNameBadRequest() throws Exception {
     mockMvc.perform(MockMvcRequestBuilders
                         .get("/hello")
-                        .accept(MediaType.TEXT_PLAIN_VALUE))
-        .andDo(print())
-        .andExpect(status().isInternalServerError());
-  }
-
-  @Test
-  public void whenEmptyNameBadRequest() throws Exception {
-    mockMvc.perform(MockMvcRequestBuilders
-                        .get("/hello").param("name", "")
                         .accept(MediaType.TEXT_PLAIN_VALUE))
         .andDo(print())
         .andExpect(status().isBadRequest());
   }
 
   @Test
-  public void fail() throws Exception {
+  public void whenSendNameSayHelloTestfail() throws Exception {
     mockMvc.perform(MockMvcRequestBuilders
-                        .get("/hello")
+                        .get("/hello").param("name", "elie")
                         .accept(MediaType.TEXT_PLAIN_VALUE))
         .andDo(print())
-        .andExpect(status().isOk());
+        .andExpect(status().isBadRequest());
   }
 }
