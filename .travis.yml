@@ -11,8 +11,7 @@ install: true
 addons:
   sonarcloud:
     organization: elie-kahwaji
-    token:
-      secure: "$SONAR_TOKEN"
+    token: ${SONAR_TOKEN}
 
 
 cache:
