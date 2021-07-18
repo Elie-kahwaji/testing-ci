@@ -24,10 +24,10 @@
 		<!-- JaCoCo Properties -->
 		<jacoco.version>0.8.7</jacoco.version>
 		<sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
-		<sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>
-		<sonar.coverage.jacoco.xmlReportPaths>
-			${project.basedir}/target/site/jacoco/jacoco.xml
-		</sonar.coverage.jacoco.xmlReportPaths>
+		<!--<sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>-->
+		<!--<sonar.coverage.jacoco.xmlReportPaths>
+			/target/site/jacoco/jacoco.xml
+		</sonar.coverage.jacoco.xmlReportPaths>-->
 
 		<!-- SonarQube -->
 		<sonar.projectKey>Elie-kahwaji_testing-ci</sonar.projectKey>
