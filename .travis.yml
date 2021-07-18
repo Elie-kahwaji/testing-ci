@@ -30,4 +30,4 @@ jobs:
   - stage: test
     script: "./mvnw test"
   - stage: sonar
-    script: mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar -Dsonar.projectKey=Elie-kahwaji_testing-ci
+    script: mvn clean install sonar:sonar
