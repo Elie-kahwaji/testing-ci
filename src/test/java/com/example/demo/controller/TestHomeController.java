@@ -37,13 +37,4 @@ public class TestHomeController {
         .andDo(print())
         .andExpect(status().isBadRequest());
   }
-
-  @Test
-  public void whenSendNameSayHelloTestfail() throws Exception {
-    mockMvc.perform(MockMvcRequestBuilders
-                        .get("/hello").param("name", "elie")
-                        .accept(MediaType.TEXT_PLAIN_VALUE))
-        .andDo(print())
-        .andExpect(status().isBadRequest());
-  }
 }

@@ -1,25 +1,34 @@
-# This enables the 'defaults' to test java applications:
 language: java
 
-# We can specify a list of JDKs to be used for testing
-# A list of available JDKs in Trusty can be seed in:
-# https://docs.travis-ci.com/user/reference/xenial/#jvm-clojure-groovy-java-scala-support
+env:
+  global:
+    secure: CzhrOxPPdKcZ42WEjNkaLiaFmt++xoRKHG7nhtfll3w9JCgsZ3Hxycl2E5VQF3xK9zkVqaJHp0iGrzsdVbvKmRRAZVjh9opvOpsZRblffCNqHQ8k3lneAN2SeTynEHp75SO0pSdZW98+4LC+kMN2seoWXAWVbI+tHWg8vHCod9jt1aQkvlKSbVQiVv+Ud1S9Gk3j76Y30AeD/29ioCvCGSSGMbIC9P4730S6leDBsirkYe+6OAkEZj/Mf5cLuRUIXF4DBuXYVPMJltWy1AuMLP6djuRrY4fXI0A9wLMRp7+SHumiYLFR6ejEZJ69pThg67d+UdRc5sQwVee4tBO+KUb5+aG2iRL//sdDl8tJuc0f1xQMpNtmKi0EOD8iLHzrq9xll7oaRaqTRbV8x4jGuRVx+pTauNNuLmXFauAXdMOGQcvj7AQ8HjmWQlnZce7fFXkC/X8IozqbYGBF36SEa9wQRd1KQs9QCcolwLY2wp/atAbf0GYwR/Pn4EUQMwFTPTlTz1wiHqh/YwSe39WM2HG4Z/qK5KB5FDqD+RbRJ0PxPY9hJh37Bl+3S2DqgsgsUxJMlY31HcNhwEliHrdkocCCRspDSS1BbYqvMAQxQnk2vL5amjazXPuuK0hHgwgYRrZmOTkTU/dN//mmb8VO/p9gkW/ljbJe9j8YSorahXk=
+
 jdk:
   - openjdk11
 
+install: true
+addons:
+  sonarcloud:
+    organization: elie-kahwaji
+    token:
+      secure: "$SONAR_TOKEN"
+
+
 cache:
   directories:
-    - $HOME/.m2
+  - "$HOME/.m2"
+  - "$HOME/.sonar/cache"
 
 before_install:
   - chmod +x mvnw
 
+
 jobs:
   include:
-    - stage: compile
-      script: ./mvnw clean compile
-    - stage: test
-      script: mvn test
-
-
-
+  - stage: compile
+    script: "./mvnw clean compile"
+  - stage: test
+    script: "./mvnw test"
+  - stage: sonar
+    script: mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar
