@@ -11,15 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class HelloController {
 
   @GetMapping("/hello")
-  public ResponseEntity<String> sayHello(@RequestParam("name") String name) {
-
-    if(name == null) {
-      return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-    }
-
-    if(name.trim().isEmpty()) {
-      return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
-    }
+  public ResponseEntity<String> sayHello(@RequestParam(value = "name",  required = true) String name) {
 
     return ResponseEntity.ok("Hello "+ name);
   }

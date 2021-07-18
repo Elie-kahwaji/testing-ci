@@ -30,16 +30,7 @@ public class TestHomeController {
   }
 
   @Test
-  public void whenNoNameInternalServerError() throws Exception {
-    mockMvc.perform(MockMvcRequestBuilders
-                        .get("/hello")
-                        .accept(MediaType.TEXT_PLAIN_VALUE))
-        .andDo(print())
-        .andExpect(status().isInternalServerError());
-  }
-
-  @Test
-  public void whenEmptyNameBadRequest() throws Exception {
+  public void whenNoNameBadRequest() throws Exception {
     mockMvc.perform(MockMvcRequestBuilders
                         .get("/hello")
                         .accept(MediaType.TEXT_PLAIN_VALUE))
