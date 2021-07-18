@@ -27,7 +27,7 @@
 		<sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>
 		<sonar.jacoco.reportPath>${project.basedir}/../target/jacoco.exec</sonar.jacoco.reportPath>
 
-		<!-- Sonar -->
+		<!-- SonarQube -->
 		<sonar.projectKey>Elie-kahwaji_testing-ci</sonar.projectKey>
 		<sonar.organization>elie-kahwaji</sonar.organization>
 		<sonar.host.url>https://sonarcloud.io</sonar.host.url>
